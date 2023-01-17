@@ -51,7 +51,6 @@ func (r *MyResourceReconciler) Reconcile(ctx context.Context, req ctrl.Request) 
 
 	// TODO(user): your logic here
 	log.Info("reconcile!")
-
 	return ctrl.Result{}, nil
 }
 
