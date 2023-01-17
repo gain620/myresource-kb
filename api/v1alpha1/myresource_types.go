@@ -44,6 +44,10 @@ type MyResourceStatus struct {
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
 
+//+kubebuilder:printcolumn:name="Image",type=string,JSONPath=`.spec.image`
+//+kubebuilder:printcolumn:name="State",type=string,JSONPath=`.status.state`
+//+kubebuilder:printcolumn:name="Age",type=date,JSONPath=`.metadata.creationTimestamp`
+
 // MyResource is the Schema for the myresources API
 type MyResource struct {
 	metav1.TypeMeta   `json:",inline"`
