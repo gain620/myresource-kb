@@ -17,6 +17,7 @@ limitations under the License.
 package v1alpha1
 
 import (
+	"k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -28,14 +29,16 @@ type MyResourceSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of MyResource. Edit myresource_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	Image  string            `json:"image"`
+	Memory resource.Quantity `json:"memory"`
 }
 
 // MyResourceStatus defines the observed state of MyResource
 type MyResourceStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+
+	State string `json:"state"`
 }
 
 //+kubebuilder:object:root=true
