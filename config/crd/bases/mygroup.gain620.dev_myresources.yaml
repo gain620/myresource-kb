@@ -15,7 +15,17 @@ spec:
     singular: myresource
   scope: Namespaced
   versions:
-  - name: v1alpha1
+  - additionalPrinterColumns:
+    - jsonPath: .spec.image
+      name: Image
+      type: string
+    - jsonPath: .status.state
+      name: State
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    name: v1alpha1
     schema:
       openAPIV3Schema:
         description: MyResource is the Schema for the myresources API
@@ -35,16 +45,27 @@ spec:
           spec:
             description: MyResourceSpec defines the desired state of MyResource
             properties:
-              foo:
-                description: Foo is an example field of MyResource. Edit myresource_types.go
-                  to remove/update
+              image:
                 type: string
+              memory:
+                anyOf:
+                - type: integer
+                - type: string
+                pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                x-kubernetes-int-or-string: true
+            required:
+            - image
+            - memory
             type: object
           status:
             description: MyResourceStatus defines the observed state of MyResource
+            properties:
+              state:
+                type: string
+            required:
+            - state
             type: object
         type: object
     served: true
     storage: true
-    subresources:
-      status: {}
+    subresources: {}
