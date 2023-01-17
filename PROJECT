@@ -1,0 +1,6 @@
+domain: gain620.dev
+layout:
+- go.kubebuilder.io/v4-alpha
+projectName: myresource-kb
+repo: github.com/gain620/myresource
+version: "3"
